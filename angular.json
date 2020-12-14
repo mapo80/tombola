@@ -1,0 +1,169 @@
+{
+  "version": 1,
+  "projects": {
+    "tombola": {
+      "projectType": "application",
+      "root": "apps/tombola",
+      "sourceRoot": "apps/tombola/src",
+      "prefix": "tombola",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/tombola",
+            "index": "apps/tombola/src/index.html",
+            "main": "apps/tombola/src/main.ts",
+            "polyfills": "apps/tombola/src/polyfills.ts",
+            "tsConfig": "apps/tombola/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/tombola/src/favicon.ico",
+              "apps/tombola/src/assets"
+            ],
+            "styles": ["apps/tombola/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/tombola/src/environments/environment.ts",
+                  "with": "apps/tombola/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "tombola:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "tombola:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "tombola:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/tombola/tsconfig.app.json",
+              "apps/tombola/tsconfig.spec.json",
+              "apps/tombola/tsconfig.editor.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/tombola/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/tombola"],
+          "options": {
+            "jestConfig": "apps/tombola/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "tombola-e2e": {
+      "root": "apps/tombola-e2e",
+      "sourceRoot": "apps/tombola-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/tombola-e2e/cypress.json",
+            "tsConfig": "apps/tombola-e2e/tsconfig.e2e.json",
+            "devServerTarget": "tombola:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "tombola:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/tombola-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/tombola-e2e/**/*"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/workspace": {
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/cypress": {
+      "cypress-project": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/node": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/nest": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/express": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "tombola"
+}
