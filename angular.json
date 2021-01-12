@@ -117,6 +117,83 @@
           }
         }
       }
+    },
+    "tombola-core": {
+      "projectType": "library",
+      "root": "libs/tombola-core",
+      "sourceRoot": "libs/tombola-core/src",
+      "prefix": "tombola",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/tombola-core/tsconfig.lib.json",
+              "libs/tombola-core/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/tombola-core/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/tombola-core"],
+          "options": {
+            "jestConfig": "libs/tombola-core/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "tombola-services": {
+      "root": "apps/tombola-services",
+      "sourceRoot": "apps/tombola-services/src",
+      "projectType": "application",
+      "prefix": "tombola-services",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/tombola-services",
+            "main": "apps/tombola-services/src/main.ts",
+            "tsConfig": "apps/tombola-services/tsconfig.app.json",
+            "assets": ["apps/tombola-services/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/tombola-services/src/environments/environment.ts",
+                  "with": "apps/tombola-services/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "tombola-services:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/tombola-services/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/tombola-services"],
+          "options": {
+            "jestConfig": "apps/tombola-services/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

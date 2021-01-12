@@ -29,6 +29,12 @@
     "tombola-e2e": {
       "tags": [],
       "implicitDependencies": ["tombola"]
+    },
+    "tombola-core": {
+      "tags": []
+    },
+    "tombola-services": {
+      "tags": []
     }
   }
 }
