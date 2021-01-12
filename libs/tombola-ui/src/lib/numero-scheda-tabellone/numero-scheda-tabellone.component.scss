@@ -1,0 +1,25 @@
+.tile { 
+	float: left;
+	width: 20%;
+	height: 33.333%;
+	cursor: pointer;
+}
+
+.number {
+    width: 40px;
+    height: 40px;
+	margin: 10px;
+	padding: 10px;
+    background-color: #fcf7eb;
+    border-radius: 50%;
+    color: #bbb093;
+    text-align: center;
+	line-height: 40px;
+	font-size: 18px;
+	display: block;
+}
+
+.tile.selected > div {
+	background-color: #D1574A;
+	color: #FFF;
+}

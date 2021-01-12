@@ -194,6 +194,32 @@
           }
         }
       }
+    },
+    "tombola-ui": {
+      "projectType": "library",
+      "root": "libs/tombola-ui",
+      "sourceRoot": "libs/tombola-ui/src",
+      "prefix": "tombola",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/tombola-ui/tsconfig.lib.json",
+              "libs/tombola-ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/tombola-ui/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/tombola-ui"],
+          "options": {
+            "jestConfig": "libs/tombola-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
@@ -240,6 +266,9 @@
     },
     "@nrwl/angular:library": {
       "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
     }
   },
   "defaultProject": "tombola"

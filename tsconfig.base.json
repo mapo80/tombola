@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@tombola/tombola-core": ["libs/tombola-core/src/index.ts"]
+      "@tombola/tombola-core": ["libs/tombola-core/src/index.ts"],
+      "@tombola/tombola-ui": ["libs/tombola-ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

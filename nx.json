@@ -35,6 +35,9 @@
     },
     "tombola-services": {
       "tags": []
+    },
+    "tombola-ui": {
+      "tags": []
     }
   }
 }
